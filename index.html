@@ -132,17 +132,8 @@
     </div>
 
     <script>
-        // Retrieve or set the countdown end time
-        let countdownEndTime = localStorage.getItem("countdownEndTime");
-
-        if (!countdownEndTime) {
-            const countdownDate = new Date();
-            countdownDate.setHours(countdownDate.getHours() + (4 * 24)); // Add 4 days
-            countdownEndTime = countdownDate.getTime();
-            localStorage.setItem("countdownEndTime", countdownEndTime);
-        } else {
-            countdownEndTime = parseInt(countdownEndTime, 10);
-        }
+        // Set the fixed end time (shared by all users)
+        const countdownEndTime = new Date("2025-01-06T00:00:00Z").getTime(); // Example: January 10, 2025, UTC
 
         function updateTimer() {
             const now = new Date().getTime();
@@ -160,8 +151,7 @@
                 document.getElementById("seconds").textContent = seconds;
             } else {
                 clearInterval(timerInterval);
-                localStorage.removeItem("countdownEndTime"); // Clear stored end time
-                window.location.href = "https://estatecash.cashwire.online";
+                window.location.href = "https://estatecash.cashwire.online"; // Redirect after countdown ends
             }
         }
 
